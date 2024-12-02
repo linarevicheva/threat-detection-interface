@@ -20,7 +20,8 @@ import {
 import { FaPaperPlane } from "react-icons/fa";
 import {
 	FaDiscord,
-	FaGithub
+	FaGithub,
+	FaArrowLeftLong
 } from "react-icons/fa6";
 
 export const iconLibrary: Record<string, IconType> = {
@@ -42,4 +43,5 @@ export const iconLibrary: Record<string, IconType> = {
 	discord: FaDiscord,
 	github: FaGithub,
 	paperPlane: FaPaperPlane,
+	arrowLeft: FaArrowLeftLong 
 };

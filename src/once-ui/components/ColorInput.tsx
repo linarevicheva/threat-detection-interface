@@ -14,7 +14,7 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(({
     value,
     onChange,
     ...props
-}, ref) => {
+}) => {
     const colorInputRef = useRef<HTMLInputElement>(null);
 
     const handleHexClick = () => {
