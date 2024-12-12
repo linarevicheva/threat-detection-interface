@@ -10,7 +10,7 @@ export default function Notifications() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
-    
+    <div style={{ position: 'relative', height: '100vh', overflow: 'hidden'}}>
     <Flex
     alignItems='center'
     direction='column'
@@ -20,7 +20,8 @@ export default function Notifications() {
     paddingTop='160'
     style={{
       width: isMobile ? '100%' : '100%',
-      maxWidth: isMobile ? '320px' : '100%'
+      maxWidth: isMobile ? '430px' : '100%',
+      marginLeft: isMobile ? '4%' : '0'
     }}
     >
       <MatrixBackground />
@@ -35,5 +36,6 @@ export default function Notifications() {
         <EmailSignUpForm />
     </Flex>
     </Flex>
+    </div>
   );
 }

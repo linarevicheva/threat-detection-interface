@@ -6,6 +6,7 @@ import { Input } from '@/once-ui/components/Input';
 import { Flex } from '@/once-ui/components/Flex';
 import { Heading } from '@/once-ui/components/Heading';
 import { LetterFx } from '@/once-ui/components';
+import {useMediaQuery, useTheme} from '@mui/material';
 import MatrixBackground from './MatrixBackground';
 import styles from './login.module.css'
 import axios from 'axios';
@@ -15,6 +16,8 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const router = useRouter();
   const [error, setError] = useState<string>('');
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,6 +42,7 @@ export default function LoginPage() {
         fillWidth
         style={{ position: 'relative', zIndex: 1 }}
       >
+        <img src='/logo.png' alt='logo' style={{width: isMobile ? '40%' : ''}}/>
         <Heading wrap="balance" variant="display-strong-xl">
           <span className="font-code">
             <LetterFx trigger="instant">Salem</LetterFx>
