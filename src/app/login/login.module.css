@@ -1,0 +1,12 @@
+.loginbtn {
+    width: 10%;
+    max-width: 150px;
+    min-width: 80px;
+  }
+  
+  @media (max-width: 768px) {
+    .loginbtn {
+      width: 70%;
+    }
+  }
+  

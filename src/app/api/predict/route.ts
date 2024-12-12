@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     }
 
     const modelServiceUrl = 'https://model-service-dot-threat-detection-436007.wl.r.appspot.com/api/predict';
-
+    //const modelServiceUrl = 'http://127.0.0.1:8000/api/predict'
     const response = await fetch(modelServiceUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -44,7 +44,6 @@ export async function POST(req: NextRequest) {
     const modelResponse = await response.json();
     const { isAnomalous, meanReconstructionError, threshold } = modelResponse;
 
-    // Send email alert if an anomaly is detected
     if (isAnomalous) {
       await sendEmailAlert(
         process.env.ALERT_EMAIL!,

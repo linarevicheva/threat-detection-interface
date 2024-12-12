@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
    //const FASTAPI_BASE_URL = 'http://127.0.0.1:8000';
-    const FASTAPI_BASE_URL = "https://model-service-dot-threat-detection-436007.wl.r.appspot.com/api"
+  const FASTAPI_BASE_URL = "https://model-service-dot-threat-detection-436007.wl.r.appspot.com/api"
 
     const response = await fetch(`${FASTAPI_BASE_URL}/normalization-params`, {
       method: 'GET',
