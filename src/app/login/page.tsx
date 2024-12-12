@@ -42,7 +42,7 @@ export default function LoginPage() {
         fillWidth
         style={{ position: 'relative', zIndex: 1 }}
       >
-        <img src='/logo.png' alt='logo' style={{width: isMobile ? '40%' : ''}}/>
+        <img src='/logo.png' alt='logo' style={{width: isMobile ? '40%' : '10%'}}/>
         <Heading wrap="balance" variant="display-strong-xl">
           <span className="font-code">
             <LetterFx trigger="instant">Salem</LetterFx>
