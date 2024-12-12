@@ -18,8 +18,6 @@ export default function MatrixBackground(): JSX.Element {
     const columns = Math.floor(canvas.width / fontSize);
     const drops: number[] = Array(columns).fill(1);
 
-    let frameCount = 0;
-
 const draw = () => {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
