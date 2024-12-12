@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Typography, Box, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { Typography, Box, List, ListItem, ListItemText, Divider, useMediaQuery, useTheme } from '@mui/material';
 import { IconButton } from '@/once-ui/components';
 import { Feedback } from '@/once-ui/components';
 import {
@@ -29,6 +29,9 @@ type PredictionResponse = {
 };
 
 export default function Dashboard() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [logData, setLogData] = useState<LogEntry[]>([]);
   const [currentTimeStep, setCurrentTimeStep] = useState<number>(0);
   const [trainingMean, setTrainingMean] = useState<number>(0);
@@ -127,15 +130,30 @@ export default function Dashboard() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'row', background: 'white', padding: '20px', height: '100%'}}>
-     <IconButton icon='chevronLeft' href='/' size='l'/> 
-     <Box sx={{ flex: 2, marginRight: '20px' }}>
-        <Typography variant="h4">Anomaly Detection Dashboard</Typography>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
+        background: 'black',
+        padding: '20px',
+        height: '100%',
+      }}
+    >
+      <IconButton icon="chevronLeft" href="/" size="l" />
+      <Box
+        sx={{
+          flex: 2,
+          marginRight: isMobile ? '0' : '20px',
+          marginBottom: isMobile ? '0' : '0',
+        }}
+      >
+        <Typography variant={isMobile ? 'h5' : 'h4'} style={{marginTop: isMobile ? '10px' : '0', marginLeft: isMobile ? '0' : '10px'}}>Anomaly Detection Dashboard</Typography>
         <LineChart
-          width={800}
-          height={500}
+          width={isMobile ? 400 : 800}
+          height={isMobile ? 300 : 500}
           data={logData}
-          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 30, right: 30, left: 20, bottom: 0 }}
+          style={{marginLeft: isMobile ? '-10%' : '-8%'}}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
@@ -164,44 +182,33 @@ export default function Dashboard() {
         </LineChart>
       </Box>
 
-      <Box sx={{ flex: 1 }}>
-        <Typography variant="h3">Prediction Results</Typography>
-        <Feedback style={{height: '300px', marginLeft: '-25%'}}>
-          <List >
-          {predictionResults ? (
-            <>
+      <Box sx={{ flex: 2}}>
+        <Typography variant={isMobile ? 'h4' : 'h3'}>Prediction Results</Typography>
+        <Feedback style={{ height: '250px', marginLeft: isMobile ? '-1%' : '-12%', marginTop: isMobile ? '10px' : '20px' }}>
+          <List>
+            {predictionResults ? (
+              <>
+                <ListItem>
+                  <ListItemText primary="Anomaly Detected?" />
+                  <ListItemText primary={predictionResults.isAnomalous ? 'Yes' : 'No'} />
+                </ListItem>
+                <Divider />
+                <ListItem>
+                  <ListItemText primary="Mean Reconstruction Error:" />
+                  <ListItemText primary={predictionResults.meanReconstructionError.toFixed(4)} />
+                </ListItem>
+                <Divider />
+                <ListItem>
+                  <ListItemText primary="Threshold:" />
+                  <ListItemText primary={predictionResults.threshold.toFixed(4)} />
+                </ListItem>
+              </>
+            ) : (
               <ListItem>
-                <ListItemText
-                  primary="Anomaly Detected?"
-                />
-                <ListItemText
-                primary={predictionResults.isAnomalous ? 'Yes' : 'No'}/>
+                <ListItemText primary="No prediction results yet." />
               </ListItem>
-              <Divider />
-              <ListItem>
-                <ListItemText
-                  primary="Mean Reconstruction Error:"
-                />
-                <ListItemText
-                  primary={predictionResults.meanReconstructionError.toFixed(4)}
-                />
-              </ListItem>
-              <Divider />
-              <ListItem>
-                <ListItemText
-                  primary="Threshold:"
-                />
-                <ListItemText
-                  primary={predictionResults.threshold.toFixed(4)}
-                />
-              </ListItem>
-            </>
-          ) : (
-            <ListItem>
-              <ListItemText primary="No prediction results yet." />
-            </ListItem>
-          )}
-        </List>
+            )}
+          </List>
         </Feedback>
       </Box>
     </Box>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';;
+import { useEffect } from 'react';
 import { Heading, Text, Flex, Button, Grid, Icon, Logo, Background, LetterFx } from '@/once-ui/components';
 import Link from 'next/link';
 
@@ -37,7 +37,7 @@ export default function Home() {
     <Flex
       fillWidth
       paddingTop="l"
-      paddingX="xl"
+      paddingX="m"
       direction="column"
       alignItems="center"
       flex={1}
@@ -60,26 +60,26 @@ export default function Home() {
           justifyContent="center"
           fillWidth
           fillHeight
-          padding="l"
-          gap="l"
+          padding="m"
+          gap="m"
         >
-          <Flex mobileDirection="column" fillWidth gap="24">
-            <Flex position="relative" flex={2} paddingTop="56" paddingX="xl">
-              <Logo size="xl" icon={false} style={{ zIndex: '1' }} />
+          <Flex mobileDirection="column" fillWidth gap="16">
+            <Flex position="relative" flex={2} paddingTop="56" paddingX="m">
+              <Logo size="l" icon={false} style={{ zIndex: '1' }} />
             </Flex>
             <Flex
               position="relative"
               flex={4}
-              gap="24"
-              marginBottom="104"
+              gap="16"
+              marginBottom="56" 
               direction="column"
             >
-              <Heading wrap="balance" variant="display-strong-xl">
+              <Heading wrap="balance" variant="display-strong-l">
                 <span className="font-code">
                   <LetterFx trigger="instant">Salem</LetterFx>
                 </span>
               </Heading>
-              <Heading wrap="balance" variant="display-strong-s">
+              <Heading wrap="balance" variant="display-strong-xs">
                 <span className="font-code">
                   <LetterFx trigger="instant">
                     We hunt before you know
@@ -90,6 +90,7 @@ export default function Home() {
                 href="/dashboard"
                 suffixIcon="chevronRight"
                 variant="secondary"
+                size="s"
               >
                 Start now
               </Button>
@@ -102,12 +103,11 @@ export default function Home() {
             columns="repeat(2, 1fr)"
             tabletColumns="1col"
             mobileColumns="1col"
-            width={40}
           >
             {links.map((link) => (
               <Link
                 target="_blank"
-                style={{ padding: 'var(--responsive-space-l)' }}
+                style={{ padding: 'var(--responsive-space-m)' }}
                 key={link.href}
                 href={link.href}
               >
@@ -117,13 +117,13 @@ export default function Home() {
                   gap="8"
                   direction="column"
                 >
-                  <Flex fillWidth gap="12" alignItems="center">
-                    <Text variant="body-strong-m" onBackground="neutral-strong">
+                  <Flex fillWidth gap="8" alignItems="center">
+                    <Text variant="body-strong-s" onBackground="neutral-strong">
                       {link.title}
                     </Text>
-                    <Icon size="s" name="arrowUpRight" />
+                    <Icon size="xs" name="arrowUpRight" />
                   </Flex>
-                  <Text variant="body-default-s" onBackground="neutral-weak">
+                  <Text variant="body-default-xs" onBackground="neutral-weak">
                     {link.description}
                   </Text>
                 </Flex>
@@ -136,11 +136,13 @@ export default function Home() {
         as="footer"
         position="relative"
         fillWidth
-        paddingX="l"
-        paddingY="m"
+        paddingX="m"
+        paddingY="s"
         justifyContent="space-between"
+        direction="column" 
+        gap="8" 
       >
-        <Flex gap="12">
+        <Flex gap="8">
           <Button
             onClick={handleEmail}
             prefixIcon="paperPlane"
