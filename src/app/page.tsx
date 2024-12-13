@@ -65,7 +65,6 @@ export default function Home() {
         >
           <Flex mobileDirection="column" fillWidth gap="16">
             <Flex position="relative" flex={2} paddingTop="56" paddingX="m">
-              <Logo size="l" icon={false} style={{ zIndex: '1' }} />
             </Flex>
             <Flex
               position="relative"

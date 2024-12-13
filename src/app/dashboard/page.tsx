@@ -79,7 +79,7 @@ export default function Dashboard() {
 
     const interval = setInterval(async () => {
       await fetchPredictions();
-    }, 60000);
+    }, 20000);
 
     return () => clearInterval(interval);
   }, [currentTimeStep, trainingMean, trainingStd, isFetchingParams]);
